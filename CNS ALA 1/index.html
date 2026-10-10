@@ -1,0 +1,1509 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CipherLink | Secure Messaging</title>
+
+<style>
+
+/* ================= BASIC ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f9fd;
+    color: #263548;
+    min-height: 100vh;
+}
+
+/* ================= HEADER ================= */
+
+header {
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #ffffff;
+    border-bottom: 1px solid #dfe8f0;
+
+    box-shadow: 0 3px 15px rgba(60, 90, 120, 0.06);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: linear-gradient(135deg, #78a9dc, #8bc9df);
+
+    color: white;
+    font-size: 21px;
+}
+
+.logo h1 {
+    font-size: 22px;
+    color: #263548;
+}
+
+.logo span {
+    display: block;
+    color: #8291a1;
+    font-size: 10px;
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+}
+
+.status {
+    padding: 9px 16px;
+
+    border-radius: 30px;
+
+    background: #eef7ff;
+    border: 1px solid #d3e6f7;
+
+    color: #4c82b2;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    text-align: center;
+    padding: 50px 20px 30px;
+}
+
+.badge {
+    display: inline-block;
+
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    background: #eef7ff;
+    border: 1px solid #d3e6f7;
+
+    color: #4c82b2;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    margin-bottom: 17px;
+}
+
+.hero h2 {
+    font-size: clamp(32px, 5vw, 50px);
+    color: #263548;
+    margin-bottom: 12px;
+}
+
+.hero h2 span {
+    color: #6096ca;
+}
+
+.hero p {
+    color: #748496;
+
+    max-width: 620px;
+
+    margin: auto;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding-bottom: 50px;
+}
+
+/* ================= SIMPLE FLOW ================= */
+
+.crypto-flow {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 13px;
+
+    margin: 20px 0 35px;
+
+    flex-wrap: wrap;
+}
+
+.flow-box {
+    min-width: 145px;
+
+    padding: 18px 20px;
+
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce7ef;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 18px rgba(60, 90, 120, 0.07);
+
+    transition: 0.25s;
+}
+
+.flow-box:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(60, 90, 120, 0.11);
+}
+
+.flow-icon {
+    width: 42px;
+    height: 42px;
+
+    margin: 0 auto 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #eef7ff;
+
+    font-size: 20px;
+}
+
+.flow-box strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #334155;
+
+    font-size: 14px;
+}
+
+.flow-box small {
+    color: #8a99a9;
+
+    font-size: 11px;
+}
+
+.arrow {
+    color: #79a9cf;
+
+    font-size: 22px;
+
+    font-weight: bold;
+}
+
+/* ================= BUTTONS ================= */
+
+.controls {
+    display: flex;
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+
+    flex-wrap: wrap;
+}
+
+button {
+    border: none;
+
+    cursor: pointer;
+
+    padding: 13px 20px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    transition: 0.25s;
+}
+
+.primary {
+    background: linear-gradient(
+        135deg,
+        #6f9fd2,
+        #79bfd7
+    );
+
+    color: white;
+
+    box-shadow:
+        0 5px 15px rgba(80, 135, 180, 0.17);
+}
+
+.secondary {
+    background: #ffffff;
+
+    color: #526273;
+
+    border: 1px solid #d6e1ea;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+/* ================= GRID ================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 22px;
+}
+
+/* ================= CARD ================= */
+
+.card {
+    background: #ffffff;
+
+    border: 1px solid #dce7ef;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 8px 25px rgba(60, 90, 120, 0.07);
+}
+
+.card-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #eef7ff;
+
+    color: #6096ca;
+
+    font-size: 18px;
+}
+
+.card-title h3 {
+    font-size: 18px;
+
+    color: #263548;
+}
+
+.card-title p {
+    color: #8291a1;
+
+    font-size: 12px;
+
+    margin-top: 3px;
+}
+
+/* ================= FORM ================= */
+
+label {
+    display: block;
+
+    font-size: 11px;
+
+    color: #6c7d8e;
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.3px;
+}
+
+textarea,
+.output {
+    width: 100%;
+
+    background: #f8fbfd;
+
+    border: 1px solid #dce7ef;
+
+    border-radius: 10px;
+
+    color: #334155;
+
+    padding: 14px;
+
+    outline: none;
+
+    font-family: Consolas, monospace;
+
+    font-size: 12px;
+}
+
+textarea {
+    height: 130px;
+
+    resize: vertical;
+}
+
+textarea:focus {
+    border-color: #8bb7d7;
+
+    box-shadow:
+        0 0 0 3px rgba(120, 170, 210, 0.10);
+}
+
+.output {
+    min-height: 80px;
+
+    max-height: 150px;
+
+    overflow: auto;
+
+    word-break: break-all;
+
+    margin-top: 7px;
+}
+
+.field {
+    margin-bottom: 17px;
+}
+
+/* ================= PROCESS ================= */
+
+.result {
+    grid-column: 1 / -1;
+}
+
+.process {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.step {
+    padding: 18px;
+
+    border-radius: 13px;
+
+    background: #f8fbfe;
+
+    border: 1px solid #e1eaf1;
+}
+
+.step-number {
+    width: 29px;
+    height: 29px;
+
+    border-radius: 50%;
+
+    background: #e7f2fa;
+
+    color: #568dbb;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.step h4 {
+    font-size: 13px;
+
+    margin-bottom: 6px;
+
+    color: #334155;
+}
+
+.step p {
+    color: #7a8b9c;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+/* ================= SUCCESS ================= */
+
+.success {
+    display: none;
+
+    margin-top: 18px;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    background: #f1faf5;
+
+    border: 1px solid #ccebdd;
+
+    color: #3b9368;
+
+    font-size: 13px;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    text-align: center;
+
+    padding: 25px;
+
+    color: #7c8b9b;
+
+    border-top: 1px solid #dce7ef;
+
+    background: #ffffff;
+
+    font-size: 12px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 800px) {
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result {
+        grid-column: auto;
+    }
+
+    .process {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    header {
+        padding: 18px 20px;
+    }
+}
+
+@media(max-width: 550px) {
+
+    .crypto-flow {
+        flex-direction: column;
+    }
+
+    .arrow {
+        transform: rotate(90deg);
+    }
+
+    .flow-box {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .process {
+        grid-template-columns: 1fr;
+    }
+
+    .status {
+        display: none;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🔐
+        </div>
+
+        <div>
+
+            <h1>
+                CipherLink
+            </h1>
+
+            <span>
+                SECURE MESSAGING LAB
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="status"
+        id="systemStatus">
+
+        ● SYSTEM READY
+
+    </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="badge">
+        CNS • ALA ACTIVITY
+    </div>
+
+
+    <h2>
+        Secure <span>Messaging</span> Lab
+    </h2>
+
+
+    <p>
+
+        Send your message securely using
+        modern encryption techniques.
+
+    </p>
+
+</section>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+
+    <!-- ================= FLOW ================= -->
+
+    <div class="crypto-flow">
+
+
+        <div class="flow-box">
+
+            <div class="flow-icon">
+                💬
+            </div>
+
+            <strong>
+                Message
+            </strong>
+
+            <small>
+                Enter your message
+            </small>
+
+        </div>
+
+
+        <div class="arrow">
+            →
+        </div>
+
+
+        <div class="flow-box">
+
+            <div class="flow-icon">
+                🔒
+            </div>
+
+            <strong>
+                Encrypt
+            </strong>
+
+            <small>
+                Protect your message
+            </small>
+
+        </div>
+
+
+        <div class="arrow">
+            →
+        </div>
+
+
+        <div class="flow-box">
+
+            <div class="flow-icon">
+                📨
+            </div>
+
+            <strong>
+                Secure Message
+            </strong>
+
+            <small>
+                Ready to send
+            </small>
+
+        </div>
+
+
+        <div class="arrow">
+            →
+        </div>
+
+
+        <div class="flow-box">
+
+            <div class="flow-icon">
+                🔓
+            </div>
+
+            <strong>
+                Decrypt
+            </strong>
+
+            <small>
+                Recover the message
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CONTROLS ================= -->
+
+    <div class="controls">
+
+        <button
+            class="primary"
+            onclick="generateKeys()">
+
+            ⚙ Generate Keys
+
+        </button>
+
+
+        <button
+            class="secondary"
+            onclick="clearAll()">
+
+            ↻ Reset
+
+        </button>
+
+    </div>
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <div class="grid">
+
+
+        <!-- ================= SENDER ================= -->
+
+        <div class="card">
+
+
+            <div class="card-title">
+
+                <div class="icon">
+                    📤
+                </div>
+
+                <div>
+
+                    <h3>
+                        Sender
+                    </h3>
+
+                    <p>
+                        Enter and secure your message
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    YOUR MESSAGE
+                </label>
+
+
+                <textarea
+                    id="message"
+                    placeholder="Type your message here..."></textarea>
+
+            </div>
+
+
+            <button
+                class="primary"
+                onclick="encryptMessage()">
+
+                🔒 Encrypt Message
+
+            </button>
+
+
+            <div
+                class="field"
+                style="margin-top:20px;">
+
+                <label>
+                    ENCRYPTED MESSAGE
+                </label>
+
+
+                <div
+                    class="output"
+                    id="encryptedMessage">
+
+                    Waiting for encryption...
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    SECURE KEY
+                </label>
+
+
+                <div
+                    class="output"
+                    id="encryptedKey">
+
+                    Waiting for encryption...
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RECEIVER ================= -->
+
+        <div class="card">
+
+
+            <div class="card-title">
+
+                <div class="icon">
+                    📥
+                </div>
+
+                <div>
+
+                    <h3>
+                        Receiver
+                    </h3>
+
+                    <p>
+                        Recover the original message
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    RECOVERED KEY
+                </label>
+
+
+                <div
+                    class="output"
+                    id="decryptedKey">
+
+                    Waiting for decryption...
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    ORIGINAL MESSAGE
+                </label>
+
+
+                <div
+                    class="output"
+                    id="decryptedMessage">
+
+                    Waiting for decryption...
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="primary"
+                id="decryptBtn"
+                onclick="decryptMessage()"
+                disabled>
+
+                🔓 Decrypt Message
+
+            </button>
+
+
+            <div
+                class="success"
+                id="successBox">
+
+                ✓ Message decrypted successfully!
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PROCESS ================= -->
+
+        <div class="card result">
+
+
+            <div class="card-title">
+
+                <div class="icon">
+                    🛡️
+                </div>
+
+                <div>
+
+                    <h3>
+                        How It Works
+                    </h3>
+
+                    <p>
+                        Simple secure messaging process
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="process">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <h4>
+                        Create Keys
+                    </h4>
+
+                    <p>
+                        Secure keys are created before
+                        the message is protected.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <h4>
+                        Encrypt
+                    </h4>
+
+                    <p>
+                        Your message is converted into
+                        protected encrypted data.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <h4>
+                        Send Securely
+                    </h4>
+
+                    <p>
+                        The protected message and key
+                        can be securely transmitted.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        4
+                    </div>
+
+                    <h4>
+                        Decrypt
+                    </h4>
+
+                    <p>
+                        The receiver recovers the original
+                        message using the secure key.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    CipherLink • Cryptography & Network Security
+    • ALA Activity
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+let rsaKeys = null;
+
+let encryptedData = null;
+
+
+/* ================= CONVERT TO BASE64 ================= */
+
+function arrayBufferToBase64(buffer) {
+
+    const bytes = new Uint8Array(buffer);
+
+    let binary = "";
+
+    bytes.forEach(byte => {
+
+        binary += String.fromCharCode(byte);
+
+    });
+
+    return btoa(binary);
+}
+
+
+/* ================= GENERATE KEYS ================= */
+
+async function generateKeys() {
+
+    try {
+
+        document.getElementById("systemStatus")
+            .innerText =
+            "● CREATING KEYS...";
+
+
+        rsaKeys =
+            await crypto.subtle.generateKey(
+
+                {
+                    name: "RSA-OAEP",
+
+                    modulusLength: 2048,
+
+                    publicExponent:
+                        new Uint8Array([1, 0, 1]),
+
+                    hash: "SHA-256"
+                },
+
+                false,
+
+                ["encrypt", "decrypt"]
+
+            );
+
+
+        document.getElementById("systemStatus")
+            .innerText =
+            "● KEYS READY";
+
+
+        alert(
+            "Secure keys created successfully!"
+        );
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Key creation failed."
+        );
+
+    }
+
+}
+
+
+/* ================= ENCRYPT ================= */
+
+async function encryptMessage() {
+
+    try {
+
+        if (!rsaKeys) {
+
+            alert(
+                "Please click Generate Keys first."
+            );
+
+            return;
+
+        }
+
+
+        const message =
+            document
+            .getElementById("message")
+            .value
+            .trim();
+
+
+        if (!message) {
+
+            alert(
+                "Please enter your message."
+            );
+
+            return;
+
+        }
+
+
+        /* Create AES key */
+
+        const aesKey =
+            await crypto.subtle.generateKey(
+
+                {
+                    name: "AES-GCM",
+
+                    length: 256
+                },
+
+                true,
+
+                [
+                    "encrypt",
+                    "decrypt"
+                ]
+
+            );
+
+
+        /* Create random IV */
+
+        const iv =
+            crypto.getRandomValues(
+                new Uint8Array(12)
+            );
+
+
+        /* Convert message */
+
+        const encodedMessage =
+            new TextEncoder()
+            .encode(message);
+
+
+        /* Encrypt message */
+
+        const ciphertext =
+            await crypto.subtle.encrypt(
+
+                {
+                    name: "AES-GCM",
+
+                    iv: iv
+                },
+
+                aesKey,
+
+                encodedMessage
+
+            );
+
+
+        /* Get AES key */
+
+        const rawAESKey =
+            await crypto.subtle.exportKey(
+                "raw",
+                aesKey
+            );
+
+
+        /* Protect AES key */
+
+        const encryptedAESKey =
+            await crypto.subtle.encrypt(
+
+                {
+                    name: "RSA-OAEP"
+                },
+
+                rsaKeys.publicKey,
+
+                rawAESKey
+
+            );
+
+
+        encryptedData = {
+
+            ciphertext:
+                ciphertext,
+
+            iv:
+                iv,
+
+            encryptedAESKey:
+                encryptedAESKey
+
+        };
+
+
+        /* Show encrypted message */
+
+        document
+            .getElementById("encryptedMessage")
+            .innerText =
+            arrayBufferToBase64(
+                ciphertext
+            );
+
+
+        /* Show protected key */
+
+        document
+            .getElementById("encryptedKey")
+            .innerText =
+            arrayBufferToBase64(
+                encryptedAESKey
+            );
+
+
+        document
+            .getElementById("decryptedKey")
+            .innerText =
+            "Secure key is ready for recovery.";
+
+
+        document
+            .getElementById("decryptedMessage")
+            .innerText =
+            "Secure message is ready for recovery.";
+
+
+        document
+            .getElementById("decryptBtn")
+            .disabled = false;
+
+
+        document
+            .getElementById("systemStatus")
+            .innerText =
+            "● MESSAGE SECURED";
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Encryption failed: " +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* ================= DECRYPT ================= */
+
+async function decryptMessage() {
+
+    try {
+
+        if (!encryptedData || !rsaKeys) {
+
+            alert(
+                "Please encrypt a message first."
+            );
+
+            return;
+
+        }
+
+
+        /* Recover AES key */
+
+        const decryptedAESKey =
+            await crypto.subtle.decrypt(
+
+                {
+                    name: "RSA-OAEP"
+                },
+
+                rsaKeys.privateKey,
+
+                encryptedData.encryptedAESKey
+
+            );
+
+
+        /* Import recovered key */
+
+        const aesKey =
+            await crypto.subtle.importKey(
+
+                "raw",
+
+                decryptedAESKey,
+
+                {
+                    name: "AES-GCM"
+                },
+
+                false,
+
+                ["decrypt"]
+
+            );
+
+
+        /* Decrypt message */
+
+        const plaintext =
+            await crypto.subtle.decrypt(
+
+                {
+                    name: "AES-GCM",
+
+                    iv: encryptedData.iv
+                },
+
+                aesKey,
+
+                encryptedData.ciphertext
+
+            );
+
+
+        /* Convert to text */
+
+        const originalMessage =
+            new TextDecoder()
+            .decode(plaintext);
+
+
+        /* Display recovered key */
+
+        document
+            .getElementById("decryptedKey")
+            .innerText =
+            arrayBufferToBase64(
+                decryptedAESKey
+            );
+
+
+        /* Display original message */
+
+        document
+            .getElementById("decryptedMessage")
+            .innerText =
+            originalMessage;
+
+
+        document
+            .getElementById("systemStatus")
+            .innerText =
+            "● MESSAGE RECOVERED";
+
+
+        document
+            .getElementById("successBox")
+            .style.display =
+            "block";
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        document
+            .getElementById("systemStatus")
+            .innerText =
+            "● DECRYPTION FAILED";
+
+
+        alert(
+            "Decryption failed: " +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* ================= RESET ================= */
+
+function clearAll() {
+
+    rsaKeys = null;
+
+    encryptedData = null;
+
+
+    document
+        .getElementById("message")
+        .value = "";
+
+
+    document
+        .getElementById("encryptedMessage")
+        .innerText =
+        "Waiting for encryption...";
+
+
+    document
+        .getElementById("encryptedKey")
+        .innerText =
+        "Waiting for encryption...";
+
+
+    document
+        .getElementById("decryptedKey")
+        .innerText =
+        "Waiting for decryption...";
+
+
+    document
+        .getElementById("decryptedMessage")
+        .innerText =
+        "Waiting for decryption...";
+
+
+    document
+        .getElementById("decryptBtn")
+        .disabled = true;
+
+
+    document
+        .getElementById("successBox")
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById("systemStatus")
+        .innerText =
+        "● SYSTEM READY";
+
+}
+
+</script>
+
+</body>
+
+</html>
+```
